@@ -5,7 +5,9 @@ import java.nio.file.Path;
 import java.util.Properties;
 
 public class ConfigManager {
-    public static final String CONFIG_FILE = "config.properties";
+    public static final String CONFIG_FILE = "src/main/resources/config.properties";
+    public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/visitor.aspx";
+    public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
     private static String firstName;
     private static String lastName;
     private static String middleName;
@@ -13,9 +15,10 @@ public class ConfigManager {
     private static String email;
     private static String dateOfBirth;
     private static String address;
-    private static Path pathToChromeDriver; //TODO add path to config
 
-    public static void saveConfig() {
+    private static Path pathToChromeDriver;
+
+    protected static void saveConfig() {
         Properties properties = new Properties();
 
         properties.setProperty("firstName", firstName);
@@ -34,7 +37,7 @@ public class ConfigManager {
         }
     }
 
-    public void loadConfig() {
+    public static void loadConfig() {
         Properties properties = new Properties();
 
         try (InputStream inputStream = new FileInputStream(CONFIG_FILE)) {
@@ -108,5 +111,14 @@ public class ConfigManager {
     public static void setAddress(String address) {
         ConfigManager.address = address;
     }
+
+    public static Path getPathToChromeDriver() {
+        return pathToChromeDriver;
+    }
+
+    public static void setPathToChromeDriver(Path pathToChromeDriver) {
+        ConfigManager.pathToChromeDriver = pathToChromeDriver;
+    }
+
 
 }

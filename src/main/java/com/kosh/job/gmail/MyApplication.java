@@ -8,28 +8,45 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.awt.*;
+import java.io.File;
+import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.concurrent.Flow;
 
 public class MyApplication extends Application {
 
     public static final Logger logger = LogManager.getLogger(MyApplication.class);
-    private Stage mainStage;
+    private Stage mainStage, firstRunStage;
     private Scene scene;
 
     @Override
     public void start(Stage stage) {
+
+        if (ConfigManager.getPathToChromeDriver()==null) {
+            startFirstRunStage(stage);
+        } else {
+            startMainStage(stage);
+        }
+
+    }
+
+    private void startMainStage(Stage stage) {
         this.mainStage = stage;
 
         // Фамилия
@@ -95,6 +112,20 @@ public class MyApplication extends Application {
         addressBox.setPrefHeight(20);
 
 
+
+        Text test = new Text("TETSTTETETEET");
+
+
+
+
+        Button exitButton = new Button("Выход");
+        exitButton.setPrefWidth(150); // ширина кнопки
+        exitButton.setPrefHeight(30); // высота кнопки
+        exitButton.setOnAction(actionEvent -> {
+            mainStage.hide();
+        });
+
+
 //        // Создаем контейнер root на Сцене 1
 //        VBox root = new VBox(1); // Отступ между компонентами
 //        root.getChildren().addAll(gridPane);
@@ -139,22 +170,74 @@ public class MyApplication extends Application {
                 textAddress, addressBox
         );
 
-        scene = new Scene(gridPane, 500, 480);
+        // Создаем контейнер root
+        VBox root = new VBox(50); // Отступ между компонентами
+        root.getChildren().addAll(gridPane, exitButton);
+        root.setPadding(new Insets(10)); // Отступы
+        root.setAlignment(Pos.TOP_CENTER);
+
+        scene = new Scene(root, 500, 480);
         mainStage.setScene(scene);
         mainStage.setTitle("Параметры заявки");
         mainStage.show();
 
-        //TODO Первичная инциализация хромдрайвера
+    }
 
+    private void startFirstRunStage (Stage stage) {
+        this.firstRunStage = stage;
+
+        //Выбор файла
+        final TextField pathTextField = new TextField();
+        pathTextField.setPrefWidth(300);
+        pathTextField.setPrefHeight(20);
+        final Button selectChromeDriver = new Button("Выбрать файл");
+        selectChromeDriver.setOnAction(event -> {
+            FileChooser fileChooser = new FileChooser();
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                pathTextField.setText(selectedFile.getAbsolutePath());
+                MyApplication.logger.info("Указан путь к ChromeDriver: " + selectedFile.getAbsolutePath());
+            }
+        });
+
+        final Button downloadChromeDriver = new Button("Скачать ChromeDriver");
+        downloadChromeDriver.setPrefWidth(150);
+        downloadChromeDriver.setPrefHeight(30);
+        downloadChromeDriver.setOnAction(actionEvent -> {
+            try {
+                URI uri = new URI(ConfigManager.DOWNLOAD_CHROME_DRIVER_URL);
+                Desktop.getDesktop().browse(uri);
+                MyApplication.logger.info("Сайт для скачивания ChromeDriver успешно открыт");
+            } catch (Exception e) {
+                MyApplication.logger.error("Ошибка открытия сайта для скачивания ChromeDriver " + e.getMessage());
+            }
+        });
+
+
+        VBox root = new VBox(50); // Отступ между компонентами
+        root.getChildren().addAll(pathTextField, selectChromeDriver);
+        root.setPadding(new Insets(10)); // Отступы
+        root.setAlignment(Pos.TOP_CENTER);
+
+        scene = new Scene(root, 500, 480);
+
+        firstRunStage.setScene(scene);
+        firstRunStage.setTitle("Первый");
+        firstRunStage.show();
     }
 
     public static void main(String[] args) {
+
+        ConfigManager.loadConfig();     // Загружаем конфигурацию
+//        launch(args);
+
         try {
             launch(args);
             MyApplication.logger.info("Окно конфигурации успешно загружено");
         } catch (Exception e) {
             MyApplication.logger.error("Ошибка загрузки окна конфигурации " + e.getMessage());
         }
+
 
         String os = System.getProperty("os.name").toLowerCase();
 

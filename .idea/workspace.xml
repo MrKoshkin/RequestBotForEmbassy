@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Added ConfigManager class">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Added javaFX window">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -56,7 +57,7 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.MyApplication">
     <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.kosh.job.gmail.MyApplication" />
       <module name="RequestBotForEmbassy" />
@@ -70,9 +71,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="RequestBotForEmbassy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyApplication" />
+        <item itemvalue="Application.Test" />
       </list>
     </recent_temporary>
   </component>
@@ -99,12 +108,31 @@
       <option name="project" value="LOCAL" />
       <updated>1685508689622</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added javaFX window">
+      <created>1685531299748</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685531299748</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Started coding some classes" />
     <MESSAGE value="Added ConfigManager class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ConfigManager class" />
+    <MESSAGE value="Added javaFX window" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added javaFX window" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/Test.java</url>
+          <line>7</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
