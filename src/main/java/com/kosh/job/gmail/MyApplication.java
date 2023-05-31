@@ -30,8 +30,6 @@ public class MyApplication extends Application {
 
 
 
-        Text annotation = new Text("Требуется скачать ChromeDriver");
-
         textField = new TextField();
         // Создаем контейнер root на Сцене 1
         VBox root = new VBox(30); // Отступ между компонентами
