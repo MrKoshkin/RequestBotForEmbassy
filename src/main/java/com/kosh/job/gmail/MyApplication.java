@@ -113,8 +113,6 @@ public class MyApplication extends Application {
 
 
 
-        Text test = new Text("TETSTTETETEET");
-
 
 
 
@@ -212,6 +210,8 @@ public class MyApplication extends Application {
                 MyApplication.logger.error("Ошибка открытия сайта для скачивания ChromeDriver " + e.getMessage());
             }
         });
+
+        final Text description = new Text();
 
         HBox HBox = new HBox(10); // Отступ между компонентами
         HBox.getChildren().addAll(selectChromeDriver,pathTextField);

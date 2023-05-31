@@ -1,10 +1,14 @@
 package com.kosh.job.gmail;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.util.Properties;
 
 public class ConfigManager {
+    public static final Logger logger = LogManager.getLogger(ConfigManager.class);
     public static final String CONFIG_FILE = "src/main/resources/config.properties";
     public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/visitor.aspx";
     public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
@@ -31,9 +35,9 @@ public class ConfigManager {
 
         try (OutputStream outputStream = new FileOutputStream(CONFIG_FILE)) {
             properties.store(outputStream, "Configuration");
-            MyApplication.logger.info("Конфигурация успешно сохранена");
+            logger.info("Конфигурация успешно сохранена");
         } catch (IOException e) {
-            MyApplication.logger.info("Ошибка сохранения конфигурации: " + e.getMessage());
+            logger.info("Ошибка сохранения конфигурации: " + e.getMessage());
         }
     }
 
@@ -50,9 +54,9 @@ public class ConfigManager {
             dateOfBirth = properties.getProperty("dateOfBirth");
             address = properties.getProperty("address");
 
-            MyApplication.logger.info("Конфигурация успешно загружена");
+            logger.info("Конфигурация успешно загружена");
         } catch (IOException e) {
-            MyApplication.logger.info("Ошибка загрузки конфигурации: " + e.getMessage());
+            logger.info("Ошибка загрузки конфигурации: " + e.getMessage());
         }
     }
 
