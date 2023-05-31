@@ -188,7 +188,7 @@ public class MyApplication extends Application {
 
         //Выбор файла
         final TextField pathTextField = new TextField();
-        pathTextField.setPrefWidth(300);
+        pathTextField.setPrefWidth(350);
         pathTextField.setPrefHeight(20);
         final Button selectChromeDriver = new Button("Выбрать файл");
         selectChromeDriver.setOnAction(event -> {
@@ -213,16 +213,20 @@ public class MyApplication extends Application {
             }
         });
 
+        HBox HBox = new HBox(10); // Отступ между компонентами
+        HBox.getChildren().addAll(selectChromeDriver,pathTextField);
+        HBox.setPadding(new Insets(10));
+        HBox.setAlignment(Pos.TOP_CENTER);
 
-        VBox root = new VBox(50); // Отступ между компонентами
-        root.getChildren().addAll(pathTextField, selectChromeDriver);
-        root.setPadding(new Insets(10)); // Отступы
+        VBox root = new VBox(50);
+        root.getChildren().addAll(HBox, downloadChromeDriver);
+        root.setPadding(new Insets(10));
         root.setAlignment(Pos.TOP_CENTER);
 
         scene = new Scene(root, 500, 480);
 
         firstRunStage.setScene(scene);
-        firstRunStage.setTitle("Первый");
+        firstRunStage.setTitle("Первый запуск");
         firstRunStage.show();
     }
 
@@ -233,9 +237,9 @@ public class MyApplication extends Application {
 
         try {
             launch(args);
-            MyApplication.logger.info("Окно конфигурации успешно загружено");
+            MyApplication.logger.info("Окно конфигурации успешно запущено");
         } catch (Exception e) {
-            MyApplication.logger.error("Ошибка загрузки окна конфигурации " + e.getMessage());
+            MyApplication.logger.error("Ошибка запуска окна конфигурации " + e.getMessage());
         }
 
 
