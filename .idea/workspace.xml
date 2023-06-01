@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Some minor fixes">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Selenium/RegistrationPage.java" afterDir="false" />
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Removed JavaFX because don't work with Selenium">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/SettingsWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/logs/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Archive/module-info.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/logs/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Archive/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Archive/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,10 +61,25 @@
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\src\main\java\Archive" />
+      <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\src\main\java" />
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MyApplication">
+  <component name="RunManager" selected="Application.Main">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.kosh.job.gmail.Main" />
+      <module name="RequestBotForEmbassy" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.kosh.job.gmail.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Archive.MyApplication" />
       <module name="RequestBotForEmbassy" />
@@ -86,6 +102,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.MyApplication" />
         <item itemvalue="Application.MyTest" />
       </list>
@@ -128,7 +145,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685538400204</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Removed JavaFX because don't work with Selenium">
+      <created>1685619534811</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1685619534811</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -136,14 +160,15 @@
     <MESSAGE value="Added ConfigManager class" />
     <MESSAGE value="Added javaFX window" />
     <MESSAGE value="Added First time run window for ChromeDriver properties" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added First time run window for ChromeDriver properties" />
+    <MESSAGE value="Removed JavaFX because don't work with Selenium" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed JavaFX because don't work with Selenium" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/MyTest.java</url>
-          <line>37</line>
+          <line>33</line>
           <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>

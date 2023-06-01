@@ -1,11 +1,9 @@
-package com.kosh.job.gmail;
+package com.kosh.job.gmail.Configuration;
 
-import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.*;
-import java.nio.file.Path;
 import java.util.Properties;
 
 public class ConfigManager {
