@@ -1,5 +1,6 @@
-package com.kosh.job.gmail;
+package Archive;
 
+import com.kosh.job.gmail.ConfigManager;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.Event;
@@ -11,43 +12,36 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.awt.*;
-import java.io.File;
-import java.net.URI;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.LocalDate;
-import java.util.Arrays;
-import java.util.concurrent.Flow;
 
 public class MyApplication extends Application {
 
     public static final Logger logger = LogManager.getLogger(MyApplication.class);
-    private Stage mainStage, firstRunStage;
-    private Scene scene;
+
 
     @Override
     public void start(Stage stage) {
 
-        if (ConfigManager.getPathToChromeDriver()==null) {
-            startFirstRunStage(stage);
-        } else {
-            startMainStage(stage);
-        }
+//        if (ConfigManager.getPathToChromeDriver()==null) {
+//            startFirstRunStage(stage);
+//        } else {
+//            startMainStage(stage);
+//        }
 
+        startMainStage(stage);
     }
 
     private void startMainStage(Stage stage) {
-        this.mainStage = stage;
+        Stage mainStage = stage;
 
         // Фамилия
         final Text textLastName = new Text("Фамилия: *");
@@ -174,76 +168,77 @@ public class MyApplication extends Application {
         root.setPadding(new Insets(10)); // Отступы
         root.setAlignment(Pos.TOP_CENTER);
 
-        scene = new Scene(root, 500, 480);
+        Scene scene = new Scene(root, 500, 480);
         mainStage.setScene(scene);
         mainStage.setTitle("Параметры заявки");
         mainStage.show();
 
     }
 
-    private void startFirstRunStage (Stage stage) {
-        this.firstRunStage = stage;
-
-        //Выбор файла
-        final TextField pathTextField = new TextField();
-        pathTextField.setPrefWidth(350);
-        pathTextField.setPrefHeight(20);
-        final Button selectChromeDriver = new Button("Выбрать файл");
-        selectChromeDriver.setOnAction(event -> {
-            FileChooser fileChooser = new FileChooser();
-            File selectedFile = fileChooser.showOpenDialog(stage);
-            if (selectedFile != null) {
-                pathTextField.setText(selectedFile.getAbsolutePath());
-                MyApplication.logger.info("Указан путь к ChromeDriver: " + selectedFile.getAbsolutePath());
-            }
-        });
-
-        final Button downloadChromeDriver = new Button("Скачать ChromeDriver");
-        downloadChromeDriver.setPrefWidth(150);
-        downloadChromeDriver.setPrefHeight(30);
-        downloadChromeDriver.setOnAction(actionEvent -> {
-            try {
-                URI uri = new URI(ConfigManager.DOWNLOAD_CHROME_DRIVER_URL);
-                Desktop.getDesktop().browse(uri);
-                MyApplication.logger.info("Сайт для скачивания ChromeDriver успешно открыт");
-            } catch (Exception e) {
-                MyApplication.logger.error("Ошибка открытия сайта для скачивания ChromeDriver " + e.getMessage());
-            }
-        });
-
-        final Text description = new Text();
-
-        HBox HBox = new HBox(10); // Отступ между компонентами
-        HBox.getChildren().addAll(selectChromeDriver,pathTextField);
-        HBox.setPadding(new Insets(10));
-        HBox.setAlignment(Pos.TOP_CENTER);
-
-        VBox root = new VBox(50);
-        root.getChildren().addAll(HBox, downloadChromeDriver);
-        root.setPadding(new Insets(10));
-        root.setAlignment(Pos.TOP_CENTER);
-
-        scene = new Scene(root, 500, 480);
-
-        firstRunStage.setScene(scene);
-        firstRunStage.setTitle("Первый запуск");
-        firstRunStage.show();
-    }
+//    private void startFirstRunStage (Stage stage) {
+//        this.firstRunStage = stage;
+//
+//        //Выбор файла
+//        final TextField pathTextField = new TextField();
+//        pathTextField.setPrefWidth(350);
+//        pathTextField.setPrefHeight(20);
+//        final Button selectChromeDriver = new Button("Выбрать файл");
+//        selectChromeDriver.setOnAction(event -> {
+//            FileChooser fileChooser = new FileChooser();
+//            File selectedFile = fileChooser.showOpenDialog(stage);
+//            if (selectedFile != null) {
+//                pathTextField.setText(selectedFile.getAbsolutePath());
+//                logger.info("Указан путь к ChromeDriver: " + selectedFile.getAbsolutePath());
+//            }
+//        });
+//
+//        final Button downloadChromeDriver = new Button("Скачать ChromeDriver");
+//        downloadChromeDriver.setPrefWidth(150);
+//        downloadChromeDriver.setPrefHeight(30);
+//        downloadChromeDriver.setOnAction(actionEvent -> {
+//            try {
+//                URI uri = new URI(ConfigManager.DOWNLOAD_CHROME_DRIVER_URL);
+//                Desktop.getDesktop().browse(uri);
+//                logger.info("Сайт для скачивания ChromeDriver успешно открыт");
+//            } catch (Exception e) {
+//                logger.error("Ошибка открытия сайта для скачивания ChromeDriver " + e.getMessage());
+//            }
+//        });
+//
+//        final Text description = new Text("Для успешной работы приложения необходимо скачать ChromeDriver");
+//        description.setFont(Font.font("Arial", FontWeight.BOLD, 14));
+//
+//        HBox HBox = new HBox(10); // Отступ между компонентами
+//        HBox.getChildren().addAll(selectChromeDriver,pathTextField);
+//        HBox.setPadding(new Insets(10));
+//        HBox.setAlignment(Pos.TOP_CENTER);
+//
+//        VBox root = new VBox(50);
+//        root.getChildren().addAll(description, HBox, downloadChromeDriver);
+//        root.setPadding(new Insets(10));
+//        root.setAlignment(Pos.TOP_CENTER);
+//
+//        scene = new Scene(root, 500, 480);
+//
+//        firstRunStage.setScene(scene);
+//        firstRunStage.setTitle("Первый запуск");
+//        firstRunStage.show();
+//    }
 
     public static void main(String[] args) {
 
-        ConfigManager.loadConfig();     // Загружаем конфигурацию
-//        launch(args);
-
         try {
+            ConfigManager.loadConfig(); // Загружаем конфигурацию
             launch(args);
-            MyApplication.logger.info("Окно конфигурации успешно запущено");
+            logger.info("Окно конфигурации успешно запущено");
         } catch (Exception e) {
-            MyApplication.logger.error("Ошибка запуска окна конфигурации " + e.getMessage());
+            logger.error("Ошибка запуска окна конфигурации " + e.getMessage());
         }
 
 
         String os = System.getProperty("os.name").toLowerCase();
 
     }
+
+
 }

@@ -1,5 +1,6 @@
 package com.kosh.job.gmail;
 
+import javafx.collections.ObservableList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,8 +10,8 @@ import java.util.Properties;
 
 public class ConfigManager {
     public static final Logger logger = LogManager.getLogger(ConfigManager.class);
-    public static final String CONFIG_FILE = "src/main/resources/config.properties";
-    public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/visitor.aspx";
+    public static final String CONFIG_FILE = "src/main/java/com.kosh.job.gmail/config.properties";
+    public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/Default.aspx";
     public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
     private static String firstName;
     private static String lastName;
@@ -19,8 +20,6 @@ public class ConfigManager {
     private static String email;
     private static String dateOfBirth;
     private static String address;
-
-    private static Path pathToChromeDriver;
 
     protected static void saveConfig() {
         Properties properties = new Properties();
@@ -114,14 +113,6 @@ public class ConfigManager {
 
     public static void setAddress(String address) {
         ConfigManager.address = address;
-    }
-
-    public static Path getPathToChromeDriver() {
-        return pathToChromeDriver;
-    }
-
-    public static void setPathToChromeDriver(Path pathToChromeDriver) {
-        ConfigManager.pathToChromeDriver = pathToChromeDriver;
     }
 
 

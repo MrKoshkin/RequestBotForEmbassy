@@ -1,13 +1,12 @@
 module RequestBotForEmbassy {
     requires javafx.controls;
-    requires javafx.fxml;
+    requires javafx.base;
+    requires javafx.graphics;
 
-    requires org.controlsfx.controls;
-    requires com.dlsc.formsfx;
-    requires org.kordamp.ikonli.javafx;
-    requires java.desktop;
     requires org.apache.logging.log4j;
-
+    requires java.datatransfer;
+    requires org.seleniumhq.selenium.api;
+    requires org.seleniumhq.selenium.support;
 
     opens com.kosh.job.gmail to javafx.fxml;
     exports com.kosh.job.gmail;

@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Some minor fixes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Selenium/RegistrationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/MyApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/logs/module-info.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,20 +48,28 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "/Users/kosh/IdeaProjects/RequestBotForEmbassy",
-    "project.structure.last.edited": "Modules",
+    "last_opened_file_path": "C:/Users/s.koshkin/IdeaProjects/RequestBotForEmbassy/logs",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.fileTypes"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.MyApplication">
     <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.kosh.job.gmail.MyApplication" />
+      <option name="MAIN_CLASS_NAME" value="Archive.MyApplication" />
       <module name="RequestBotForEmbassy" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.kosh.job.gmail.*" />
+          <option name="PATTERN" value="Archive.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -66,8 +77,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Test" />
+    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
       <module name="RequestBotForEmbassy" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -76,7 +87,7 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.MyApplication" />
-        <item itemvalue="Application.Test" />
+        <item itemvalue="Application.MyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -131,9 +142,9 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/test/java/Test.java</url>
-          <line>7</line>
-          <option name="timeStamp" value="4" />
+          <url>file://$PROJECT_DIR$/src/test/java/MyTest.java</url>
+          <line>37</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
