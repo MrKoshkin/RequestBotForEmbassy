@@ -16,7 +16,7 @@ public class ConfigManager {
     private static String middleName;
     private static String phone;
     private static String email;
-    private static String dateOfBirth;
+    private static String birthday;
     private static String address;
 
     protected static void saveConfig() {
@@ -27,7 +27,7 @@ public class ConfigManager {
         properties.setProperty("middleName", middleName);
         properties.setProperty("phone", phone);
         properties.setProperty("email", email);
-        properties.setProperty("dateOfBirth", dateOfBirth);
+        properties.setProperty("dateOfBirth", birthday);
         properties.setProperty("address", address);
 
         try (OutputStream outputStream = new FileOutputStream(CONFIG_FILE)) {
@@ -48,7 +48,7 @@ public class ConfigManager {
             middleName = properties.getProperty("middleName");
             phone = properties.getProperty("phone");
             email = properties.getProperty("email");
-            dateOfBirth = properties.getProperty("dateOfBirth");
+            birthday = properties.getProperty("dateOfBirth");
             address = properties.getProperty("address");
 
             logger.info("Конфигурация успешно загружена");
@@ -97,16 +97,16 @@ public class ConfigManager {
         ConfigManager.email = email;
     }
 
-    public static String getDateOfBirth() {
-        return dateOfBirth != null ? dateOfBirth : "";
+    public static String getBirthday() {
+        return birthday != null ? birthday : "";
     }
 
-    public static void setDateOfBirth(String dateOfBirth) {
-        ConfigManager.dateOfBirth = dateOfBirth;
+    public static void setBirthday(String birthday) {
+        ConfigManager.birthday = birthday;
     }
 
     public static String getAddress() {
-        return dateOfBirth != null ? dateOfBirth : "";
+        return birthday != null ? birthday : "";
     }
 
     public static void setAddress(String address) {
