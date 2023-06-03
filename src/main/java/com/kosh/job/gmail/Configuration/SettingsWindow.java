@@ -1,5 +1,7 @@
 package com.kosh.job.gmail.Configuration;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
@@ -8,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Properties;
@@ -15,105 +19,105 @@ import java.util.Properties;
 
 public class SettingsWindow extends JFrame {
 
+    public static final Logger logger = LogManager.getLogger(SettingsWindow.class);
+
     private JTextField lastNameField;
     private JTextField firstNameField;
     private JTextField middleNameField;
     private JTextField phoneField;
     private JTextField emailField;
-    private JDatePickerImpl birthdayPicker;
+    private JDatePickerImpl datePicker;
 
     public SettingsWindow() {
-        setTitle("Registration Form");
+        setTitle("Запись в посольство");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(400, 300);
-        setLayout(new GridLayout(7, 2));
 
-        // Фамилия
+        // Создание компонентов
         JLabel lastNameLabel = new JLabel("Фамилия:");
-        lastNameField = new JTextField();
-        lastNameLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        lastNameField.setBorder(BorderFactory.createLineBorder(Color.BLACK,1));
-        add(lastNameLabel);
-        add(lastNameField);
-
-        // Имя
         JLabel firstNameLabel = new JLabel("Имя:");
-        firstNameField = new JTextField("Сергей");
-        add(firstNameLabel);
-        add(firstNameField);
-
-        // Отчество
         JLabel middleNameLabel = new JLabel("Отчество:");
-        middleNameField = new JTextField();
-        add(middleNameLabel);
-        add(middleNameField);
-
-        // Телефон
         JLabel phoneLabel = new JLabel("Телефон:");
-        phoneField = new JTextField();
-        add(phoneLabel);
-        add(phoneField);
+        JLabel emailLabel = new JLabel("Email:");
+        JLabel birthDateLabel = new JLabel("Дата рождения:");
+        JLabel addressLabel = new JLabel("Обращение");
 
-        // Электронная почта
-        JLabel emailLabel = new JLabel("Электронная почта:");
-        emailField = new JTextField();
-        add(emailLabel);
-        add(emailField);
+        lastNameField = new JTextField(20);
+        firstNameField = new JTextField(20);
+        middleNameField = new JTextField(20);
+        phoneField = new JTextField(20);
+        emailField = new JTextField(20);
 
-        // Дата рождения
-        JLabel birthdayLabel = new JLabel("Дата рождения:");
-        UtilDateModel dateModel = new UtilDateModel();
-        Properties properties = new Properties();
-        JDatePanelImpl datePanel = new JDatePanelImpl(dateModel, properties);
-        birthdayPicker = new JDatePickerImpl(datePanel, new DateLabelFormatter());
-        add(birthdayLabel);
-        add(birthdayPicker);
+        UtilDateModel model = new UtilDateModel(new Date());
+        Properties p = new Properties();
+        JDatePanelImpl datePickerPanel = new JDatePanelImpl(model, p);
+        datePicker = new JDatePickerImpl(datePickerPanel, new DateLabelFormatter());
 
-        // Кнопка "Зарегистрироваться"
-        JButton registerButton = new JButton("Зарегистрироваться");
-        registerButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Получение значений из полей
-                String lastName = lastNameField.getText();
-                String firstName = firstNameField.getText();
-                String middleName = middleNameField.getText();
-                String phone = phoneField.getText();
-                String email = emailField.getText();
-                Date birthday = (Date) birthdayPicker.getModel().getValue();
+        JComboBox<String> addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
 
-                // Вывод информации
-                System.out.println("Фамилия: " + lastName);
-                System.out.println("Имя: " + firstName);
-                System.out.println("Отчество: " + middleName);
-                System.out.println("Телефон: " + phone);
-                System.out.println("Электронная почта: " + email);
-                System.out.println("Дата рождения: " + birthday);
-            }
-        });
-        add(registerButton);
+        // Установка менеджера компоновки GridBagLayout
+        setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.anchor = GridBagConstraints.WEST;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.insets.set(10, 30, 10, 30);
 
-        setVisible(true);
+        // Добавление компонентов в столбец 1
+        add(lastNameLabel, constraints);
+        constraints.gridy = 1;
+        add(firstNameLabel, constraints);
+        constraints.gridy = 2;
+        add(middleNameLabel, constraints);
+        constraints.gridy = 3;
+        add(phoneLabel, constraints);
+        constraints.gridy = 4;
+        add(emailLabel, constraints);
+        constraints.gridy = 5;
+        add(birthDateLabel, constraints);
+        constraints.gridy = 6;
+        add(addressLabel,constraints);
+
+        // Добавление компонентов в столбец 2
+        constraints.gridx = 1;
+        constraints.gridy = 0;
+        add(lastNameField, constraints);
+        constraints.gridy = 1;
+        add(firstNameField, constraints);
+        constraints.gridy = 2;
+        add(middleNameField, constraints);
+        constraints.gridy = 3;
+        add(phoneField, constraints);
+        constraints.gridy = 4;
+        add(emailField, constraints);
+        constraints.gridy = 5;
+        add(datePicker, constraints);
+        constraints.gridy = 6;
+        add(addressBox,constraints);
+
+        pack(); // Подгон размера окна под размещенные элементы
+        setLocationRelativeTo(null);
     }
-}
 
-class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
-    private final String datePattern = "dd.MM.yyyy";
-    private final java.text.SimpleDateFormat dateFormatter = new java.text.SimpleDateFormat(datePattern);
+    class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
+        private final String datePattern = "dd.MM.yyyy";
+        private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
-    @Override
-    public Object stringToValue(String text) throws java.text.ParseException {
-        return dateFormatter.parseObject(text);
-    }
-
-    @Override
-    public String valueToString(Object value) throws java.text.ParseException {
-        if (value != null) {
-            Calendar cal = (Calendar) value;
-            return dateFormatter.format(cal.getTime());
+        @Override
+        public Object stringToValue(String text) throws ParseException {
+            return dateFormatter.parseObject(text);
         }
 
-        return "";
+        @Override
+        public String valueToString(Object value) throws ParseException {
+            if (value != null) {
+                Calendar cal = (Calendar) value;
+                return dateFormatter.format(cal.getTime());
+            }
+            return "";
+        }
     }
 }
+
