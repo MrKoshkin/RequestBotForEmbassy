@@ -27,6 +27,7 @@ public class SettingsWindow extends JFrame {
     private JTextField phoneField;
     private JTextField emailField;
     private JDatePickerImpl datePicker;
+    private JButton startButton;
 
     public SettingsWindow() {
         setTitle("Запись в посольство");
@@ -53,6 +54,11 @@ public class SettingsWindow extends JFrame {
         datePicker = new JDatePickerImpl(datePickerPanel, new DateLabelFormatter());
 
         JComboBox<String> addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
+
+        startButton = new JButton("Запуск");
+        startButton.addActionListener(new StartButtonListener());
+        startButton.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         // Установка менеджера компоновки GridBagLayout
         setLayout(new GridBagLayout());
@@ -95,9 +101,12 @@ public class SettingsWindow extends JFrame {
         add(datePicker, constraints);
         constraints.gridy = 6;
         add(addressBox,constraints);
+        constraints.gridy = 7;
+        add(startButton, constraints);
 
         pack(); // Подгон размера окна под размещенные элементы
         setLocationRelativeTo(null);
+        setVisible(true);
     }
 
 
@@ -117,6 +126,15 @@ public class SettingsWindow extends JFrame {
                 return dateFormatter.format(cal.getTime());
             }
             return "";
+        }
+    }
+
+    class StartButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println(123);
+            dispose();
         }
     }
 }
