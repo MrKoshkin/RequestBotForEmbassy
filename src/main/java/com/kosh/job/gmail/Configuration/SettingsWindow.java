@@ -10,6 +10,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,9 +45,29 @@ public class SettingsWindow extends JFrame {
         JLabel addressLabel = new JLabel("Обращение");
 
         lastNameField = new JTextField(20);
+        ToolTipManager.sharedInstance().registerComponent(lastNameField);
         firstNameField = new JTextField(20);
         middleNameField = new JTextField(20);
         phoneField = new JTextField(20);
+        phoneField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (phoneField.getText().equals("+71234567890")) {
+                    phoneField.setText("");
+                    phoneField.setForeground(Color.BLACK);
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (phoneField.getText().isEmpty()) {
+                    phoneField.setForeground(Color.GRAY);
+                    phoneField.setText("+71234567890");
+                }
+            }
+        });
+
+
+
         emailField = new JTextField(20);
 
         UtilDateModel model = new UtilDateModel(new Date());
@@ -83,7 +105,7 @@ public class SettingsWindow extends JFrame {
         constraints.gridy = 5;
         add(birthDateLabel, constraints);
         constraints.gridy = 6;
-        add(addressLabel,constraints);
+        add(addressLabel, constraints);
 
         // Добавление компонентов в столбец 2
         constraints.gridx = 1;
@@ -100,7 +122,7 @@ public class SettingsWindow extends JFrame {
         constraints.gridy = 5;
         add(datePicker, constraints);
         constraints.gridy = 6;
-        add(addressBox,constraints);
+        add(addressBox, constraints);
         constraints.gridy = 7;
         add(startButton, constraints);
 
