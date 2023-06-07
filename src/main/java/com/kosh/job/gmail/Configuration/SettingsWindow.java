@@ -29,6 +29,7 @@ public class SettingsWindow extends JFrame {
     private JTextField phoneField;
     private JTextField emailField;
     private JDatePickerImpl datePicker;
+    private JDatePanelImpl datePickerPanel;
     private JButton startButton;
 
     public SettingsWindow() {
@@ -66,13 +67,27 @@ public class SettingsWindow extends JFrame {
             }
         });
 
-
-
         emailField = new JTextField(20);
+        emailField.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                if (emailField.getText().equals("example@example.com")) {
+                    emailField.setText("");
+                    emailField.setForeground(Color.BLACK);
+                }
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+                if (emailField.getText().isEmpty()) {
+                    emailField.setForeground(Color.GRAY);
+                    emailField.setText("example@example.com");
+                }
+            }
+        });
 
-        UtilDateModel model = new UtilDateModel(new Date());
+        UtilDateModel model = new UtilDateModel();
         Properties p = new Properties();
-        JDatePanelImpl datePickerPanel = new JDatePanelImpl(model, p);
+        datePickerPanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePickerPanel, new DateLabelFormatter());
 
         JComboBox<String> addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
@@ -155,8 +170,19 @@ public class SettingsWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println(123);
-            dispose();
+            if (
+                    Validator.lastNameValidator(lastNameField.getText())
+                    && Validator.firstNameValidator(firstNameField.getText())
+                    && Validator.middleNameValidator(middleNameField.getText())
+                    && Validator.phoneValidator(phoneField.getText())
+                    && Validator.emailValidator(emailField.getText())
+                    && Validator.birthDateValidator((Date) datePicker.getModel().getValue())
+
+            ) {
+
+                dispose();
+            }
+
         }
     }
 }

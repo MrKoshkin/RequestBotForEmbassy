@@ -11,8 +11,6 @@ public class Application {
     public static final Logger logger = LogManager.getLogger(Application.class);
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            SettingsWindow window = new SettingsWindow();
-        });
+        SwingUtilities.invokeLater(SettingsWindow::new);
     }
 }
