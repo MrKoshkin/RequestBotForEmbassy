@@ -47,11 +47,10 @@ public class SettingsWindow extends JFrame {
         JLabel birthDateLabel = new JLabel("Дата рождения:");
         JLabel addressLabel = new JLabel("Обращение");
 
-        lastNameField = new JTextField(20);
-        ToolTipManager.sharedInstance().registerComponent(lastNameField);
-        firstNameField = new JTextField(20);
-        middleNameField = new JTextField(20);
-        phoneField = new JTextField(20);
+        lastNameField = new JTextField(Configuration.getLastName(), 20);
+        firstNameField = new JTextField(Configuration.getFirstName(), 20);
+        middleNameField = new JTextField(Configuration.getMiddleName(), 20);
+        phoneField = new JTextField(Configuration.getPhone(), 20);
         phoneField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -60,6 +59,7 @@ public class SettingsWindow extends JFrame {
                     phoneField.setForeground(Color.BLACK);
                 }
             }
+
             @Override
             public void focusLost(FocusEvent e) {
                 if (phoneField.getText().isEmpty()) {
@@ -69,7 +69,7 @@ public class SettingsWindow extends JFrame {
             }
         });
 
-        emailField = new JTextField(20);
+        emailField = new JTextField(Configuration.getEmail(), 20);
         emailField.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -78,6 +78,7 @@ public class SettingsWindow extends JFrame {
                     emailField.setForeground(Color.BLACK);
                 }
             }
+
             @Override
             public void focusLost(FocusEvent e) {
                 if (emailField.getText().isEmpty()) {
@@ -87,12 +88,13 @@ public class SettingsWindow extends JFrame {
             }
         });
 
-        UtilDateModel model = new UtilDateModel();
+        UtilDateModel model = new UtilDateModel(parseDate(Configuration.getBirthday()));
         Properties p = new Properties();
         datePickerPanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePickerPanel, new DateLabelFormatter());
 
         addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
+        addressBox.getModel().setSelectedItem(Configuration.getAddress());
 
         startButton = new JButton("Запуск");
         startButton.addActionListener(new StartButtonListener());
@@ -148,6 +150,18 @@ public class SettingsWindow extends JFrame {
         setVisible(true);
     }
 
+    private Date parseDate(String stringDate) {
+        if (stringDate == "") {
+            return null;
+        }
+        try {
+            Date date = dateFormatter.parse(stringDate);
+            return date;
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
 
@@ -157,7 +171,7 @@ public class SettingsWindow extends JFrame {
         }
 
         @Override
-        public String valueToString(Object value){
+        public String valueToString(Object value) {
             if (value != null) {
                 Calendar cal = (Calendar) value;
                 return dateFormatter.format(cal.getTime());
@@ -172,24 +186,23 @@ public class SettingsWindow extends JFrame {
         public void actionPerformed(ActionEvent e) {
             // Проверка правильности заполнения регистрационной формы
             Validator validator = new Validator();
-
-            if (
-                    validator.lastNameValidator(lastNameField.getText())
-                    && validator.firstNameValidator(firstNameField.getText())
-                    && validator.middleNameValidator(middleNameField.getText())
-                    && validator.phoneValidator(phoneField.getText())
-                    && validator.emailValidator(emailField.getText())
-                    && validator.birthDateValidator((Date) datePicker.getModel().getValue())
-                    && validator.addressValidator((String) addressBox.getModel().getSelectedItem())
-
+            if (validator.lastNameValidator(lastNameField.getText())
+                && validator.firstNameValidator(firstNameField.getText())
+                && validator.middleNameValidator(middleNameField.getText())
+                && validator.phoneValidator(phoneField.getText())
+                && validator.emailValidator(emailField.getText())
+                && validator.birthDateValidator((Date) datePicker.getModel().getValue())
+                && validator.addressValidator((String) addressBox.getModel().getSelectedItem())
             ) {
-                ConfigManager.setLastName(lastNameField.getText());
-                ConfigManager.setFirstName(firstNameField.getText());
-                ConfigManager.setMiddleName(middleNameField.getText());
-                ConfigManager.setPhone(phoneField.getText());
-                ConfigManager.setEmail(emailField.getText());
-                ConfigManager.setBirthday(dateFormatter.format(datePicker.getModel().getValue()));
-                ConfigManager.setAddress((String) addressBox.getModel().getSelectedItem());
+                Configuration.setLastName(lastNameField.getText());
+                Configuration.setFirstName(firstNameField.getText());
+                Configuration.setMiddleName(middleNameField.getText());
+                Configuration.setPhone(phoneField.getText());
+                Configuration.setEmail(emailField.getText());
+                Configuration.setBirthday(dateFormatter.format(datePicker.getModel().getValue()));
+                Configuration.setAddress((String) addressBox.getModel().getSelectedItem());
+
+                Configuration.saveConfig();
 
                 dispose();
             }

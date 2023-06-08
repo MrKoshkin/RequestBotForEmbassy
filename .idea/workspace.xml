@@ -4,9 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated Validator class">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated ActionListener class for button">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Selenium/SeleniumAlgorithm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/SettingsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/SettingsWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Validator.java" afterDir="false" />
     </list>
@@ -77,6 +79,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileExample" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="FileExample" />
+      <module name="RequestBotForEmbassy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MyApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Archive.MyApplication" />
       <module name="RequestBotForEmbassy" />
@@ -86,13 +95,6 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MyTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <module name="RequestBotForEmbassy" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -126,10 +128,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.FileExample" />
         <item itemvalue="Application.Validator" />
         <item itemvalue="Application.Tests" />
         <item itemvalue="Application.MyApplication" />
-        <item itemvalue="Application.MyTest" />
       </list>
     </recent_temporary>
   </component>
@@ -205,8 +207,18 @@
       <option name="project" value="LOCAL" />
       <updated>1686140385892</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Updated ActionListener class for button">
+      <created>1686202282689</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1686202282689</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -240,7 +252,8 @@
     <MESSAGE value="Some minor fixes" />
     <MESSAGE value="Added Validator class" />
     <MESSAGE value="Updated Validator class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated Validator class" />
+    <MESSAGE value="Updated ActionListener class for button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated ActionListener class for button" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -254,6 +267,16 @@
           <url>file://$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Tests.java</url>
           <line>137</line>
           <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/FileExample.java</url>
+          <line>6</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Configuration.java</url>
+          <line>24</line>
+          <option name="timeStamp" value="27" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
