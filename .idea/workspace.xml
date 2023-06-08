@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Added Validator class">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated Validator class">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Application.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/ConfigManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/SettingsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/SettingsWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Validator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/job/gmail/Configuration/Validator.java" afterDir="false" />
     </list>
@@ -198,7 +198,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686042542368</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Updated Validator class">
+      <created>1686140385892</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1686140385892</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -232,7 +239,8 @@
     <MESSAGE value="Removed JavaFX because don't work with Selenium" />
     <MESSAGE value="Some minor fixes" />
     <MESSAGE value="Added Validator class" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Validator class" />
+    <MESSAGE value="Updated Validator class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated Validator class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

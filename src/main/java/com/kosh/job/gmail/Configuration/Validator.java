@@ -6,7 +6,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Validator {
-    protected static  boolean lastNameValidator(String lastName) {
+    protected boolean lastNameValidator(String lastName) {
         String lastNameRegex = "^[A-Za-zА-Яа-я]+$";
         Pattern lastNamePattern = Pattern.compile(lastNameRegex);
         if (lastName == null) {
@@ -21,7 +21,7 @@ public class Validator {
         Matcher matcher = lastNamePattern.matcher(lastName);
         return matcher.matches();
     }
-    protected static  boolean firstNameValidator(String firstName) {
+    protected boolean firstNameValidator(String firstName) {
         String firstNameRegex = "^[A-Za-zА-Яа-я]+$";
         Pattern firstNamePattern = Pattern.compile(firstNameRegex);
         if (firstName == null) {
@@ -36,7 +36,7 @@ public class Validator {
         Matcher matcher = firstNamePattern.matcher(firstName);
         return matcher.matches();
     }
-    protected static  boolean middleNameValidator(String middleName) {
+    protected boolean middleNameValidator(String middleName) {
         String middleNameRegex = "^[A-Za-zА-Яа-я]+$";
         Pattern middleNamePattern = Pattern.compile(middleNameRegex);
         if (middleName == null) {
@@ -50,7 +50,7 @@ public class Validator {
         Matcher matcher = middleNamePattern.matcher(middleName);
         return matcher.matches();
     }
-    protected static boolean phoneValidator(String phoneNumber) {
+    protected boolean phoneValidator(String phoneNumber) {
 //        String phoneRegex = "^(\\s*)?(\\+)?([- _():=+]?\\d[- _():=+]?){10,14}(\\s*)?$";
         String phoneRegex = "^(\\+7)([0-9]{10})$";
         Pattern phonePattern = Pattern.compile(phoneRegex);
@@ -66,7 +66,7 @@ public class Validator {
         Matcher matcher = phonePattern.matcher(phoneNumber);
         return matcher.matches();
     }
-    protected static boolean emailValidator(String email) {
+    protected boolean emailValidator(String email) {
         String emailRegex = "(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+)\\])";
         Pattern emailPattern = Pattern.compile(emailRegex);
         if (email == null) {
@@ -81,7 +81,7 @@ public class Validator {
         Matcher matcher = emailPattern.matcher(email);
         return matcher.matches();
     }
-    protected static boolean birthDateValidator(Date birthDate) {
+    protected boolean birthDateValidator(Date birthDate) {
         if (birthDate==null) {
             JOptionPane.showMessageDialog(null, "Не указана дата рождения", "Ошибка", JOptionPane.ERROR_MESSAGE);
             return false;
@@ -89,11 +89,16 @@ public class Validator {
         return true;
     }
 
+    protected boolean addressValidator(String address) {
+        return true;
+    }
+
     public static void main(String[] args) {
-        System.out.println(lastNameValidator("Кошкин"));
-        System.out.println(firstNameValidator("Сергей"));
-        System.out.println(middleNameValidator("Александрович"));
-        System.out.println(phoneValidator("+79037622046"));
-        System.out.println(emailValidator("kosh.job@gmail.com"));
+        Validator validator = new Validator();
+        System.out.println(validator.lastNameValidator("Кошкин"));
+        System.out.println(validator.firstNameValidator("Сергей"));
+        System.out.println(validator.middleNameValidator("Александрович"));
+        System.out.println(validator.phoneValidator("+79037622046"));
+        System.out.println(validator.emailValidator("kosh.job@gmail.com"));
     }
 }

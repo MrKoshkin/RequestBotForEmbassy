@@ -31,6 +31,8 @@ public class SettingsWindow extends JFrame {
     private JDatePickerImpl datePicker;
     private JDatePanelImpl datePickerPanel;
     private JButton startButton;
+    private JComboBox<String> addressBox;
+    private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
 
     public SettingsWindow() {
         setTitle("Запись в посольство");
@@ -90,7 +92,7 @@ public class SettingsWindow extends JFrame {
         datePickerPanel = new JDatePanelImpl(model, p);
         datePicker = new JDatePickerImpl(datePickerPanel, new DateLabelFormatter());
 
-        JComboBox<String> addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
+        addressBox = new JComboBox<>(new String[]{"Уважаемый", "Уважаемая"});
 
         startButton = new JButton("Запуск");
         startButton.addActionListener(new StartButtonListener());
@@ -148,8 +150,6 @@ public class SettingsWindow extends JFrame {
 
 
     class DateLabelFormatter extends JFormattedTextField.AbstractFormatter {
-        private final String datePattern = "dd.MM.yyyy";
-        private final SimpleDateFormat dateFormatter = new SimpleDateFormat(datePattern);
 
         @Override
         public Object stringToValue(String text) throws ParseException {
@@ -157,7 +157,7 @@ public class SettingsWindow extends JFrame {
         }
 
         @Override
-        public String valueToString(Object value) throws ParseException {
+        public String valueToString(Object value){
             if (value != null) {
                 Calendar cal = (Calendar) value;
                 return dateFormatter.format(cal.getTime());
@@ -170,15 +170,26 @@ public class SettingsWindow extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            // Проверка правильности заполнения регистрационной формы
+            Validator validator = new Validator();
+
             if (
-                    Validator.lastNameValidator(lastNameField.getText())
-                    && Validator.firstNameValidator(firstNameField.getText())
-                    && Validator.middleNameValidator(middleNameField.getText())
-                    && Validator.phoneValidator(phoneField.getText())
-                    && Validator.emailValidator(emailField.getText())
-                    && Validator.birthDateValidator((Date) datePicker.getModel().getValue())
+                    validator.lastNameValidator(lastNameField.getText())
+                    && validator.firstNameValidator(firstNameField.getText())
+                    && validator.middleNameValidator(middleNameField.getText())
+                    && validator.phoneValidator(phoneField.getText())
+                    && validator.emailValidator(emailField.getText())
+                    && validator.birthDateValidator((Date) datePicker.getModel().getValue())
+                    && validator.addressValidator((String) addressBox.getModel().getSelectedItem())
 
             ) {
+                ConfigManager.setLastName(lastNameField.getText());
+                ConfigManager.setFirstName(firstNameField.getText());
+                ConfigManager.setMiddleName(middleNameField.getText());
+                ConfigManager.setPhone(phoneField.getText());
+                ConfigManager.setEmail(emailField.getText());
+                ConfigManager.setBirthday(dateFormatter.format(datePicker.getModel().getValue()));
+                ConfigManager.setAddress((String) addressBox.getModel().getSelectedItem());
 
                 dispose();
             }
