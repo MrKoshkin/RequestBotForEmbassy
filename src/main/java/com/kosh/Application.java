@@ -1,8 +1,8 @@
-package com.kosh.job.gmail;
+package com.kosh;
 
 
-import com.kosh.job.gmail.Configuration.Configuration;
-import com.kosh.job.gmail.Configuration.SettingsWindow;
+import com.kosh.Configuration.Configuration;
+import com.kosh.Configuration.SettingsWindow;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,4 +1,4 @@
-package com.kosh.job.gmail.Configuration;
+package com.kosh.Configuration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,13 +39,13 @@ public class SettingsWindow extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Создание компонентов
-        JLabel lastNameLabel = new JLabel("Фамилия:");
-        JLabel firstNameLabel = new JLabel("Имя:");
+        JLabel lastNameLabel = new JLabel("Фамилия: *");
+        JLabel firstNameLabel = new JLabel("Имя: *");
         JLabel middleNameLabel = new JLabel("Отчество:");
-        JLabel phoneLabel = new JLabel("Телефон:");
-        JLabel emailLabel = new JLabel("Email:");
-        JLabel birthDateLabel = new JLabel("Дата рождения:");
-        JLabel addressLabel = new JLabel("Обращение");
+        JLabel phoneLabel = new JLabel("Телефон: *");
+        JLabel emailLabel = new JLabel("Email: *");
+        JLabel birthDateLabel = new JLabel("Дата рождения: *");
+        JLabel addressLabel = new JLabel("Обращение *");
 
         lastNameField = new JTextField(Configuration.getLastName(), 20);
         firstNameField = new JTextField(Configuration.getFirstName(), 20);

@@ -1,4 +1,4 @@
-package com.kosh.job.gmail.Configuration;
+package com.kosh.Configuration;
 
 import javax.swing.*;
 import java.util.Date;

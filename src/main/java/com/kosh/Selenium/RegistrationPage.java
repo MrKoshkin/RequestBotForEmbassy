@@ -1,4 +1,4 @@
-package com.kosh.job.gmail.Selenium;
+package com.kosh.Selenium;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

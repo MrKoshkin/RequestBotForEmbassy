@@ -1,4 +1,4 @@
-package com.kosh.job.gmail.Configuration;
+package com.kosh.Configuration;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,7 +8,7 @@ import java.util.Properties;
 
 public class Configuration {
     public static final Logger logger = LogManager.getLogger(Configuration.class);
-    public static final String CONFIG_FILE = "src/main/java/com.kosh.job.gmail/config.properties";
+    private static final String CONFIG_FILE = "src" + File.separator + "main" + File.separator + "java" + File.separator + "com" + File.separator + "kosh" + File.separator + "config.properties";
     public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/Default.aspx";
     public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
     private static String lastName;
@@ -24,16 +24,16 @@ public class Configuration {
         // Проверяем, существует ли файл
         File file = new File(CONFIG_FILE);
         if (file.exists()) {
-            System.out.println("Файл уже существует.");
+            logger.info("Файл уже существует");
         } else {
             try {
                 if (file.createNewFile()) {
-                    System.out.println("Файл успешно создан.");
+                    logger.info("Файл конфигурации успешно создан");
                 } else {
-                    System.out.println("Не удалось создать файл.");
+                    logger.info("Не удалось создать файл конфигурации");
                 }
             } catch (IOException e) {
-                System.out.println("Ошибка при создании файла: " + e.getMessage());
+                logger.error("Ошибка при создании файла конфигурации: " + e.getMessage());
             }
         }
 
@@ -123,7 +123,7 @@ public class Configuration {
     }
 
     public static String getAddress() {
-        return birthday != null ? birthday : "";
+        return address != null ? address : "";
     }
 
     public static void setAddress(String address) {
