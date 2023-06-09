@@ -1,5 +1,6 @@
 package com.kosh.Configuration;
 
+import com.kosh.Selenium.SeleniumAlgorithm;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jdatepicker.impl.JDatePanelImpl;
@@ -205,6 +206,7 @@ public class SettingsWindow extends JFrame {
                 Configuration.saveConfig();
 
                 dispose();
+                new SeleniumAlgorithm();
             }
 
         }

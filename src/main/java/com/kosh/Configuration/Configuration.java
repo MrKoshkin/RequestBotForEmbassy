@@ -9,7 +9,7 @@ import java.util.Properties;
 public class Configuration {
     public static final Logger logger = LogManager.getLogger(Configuration.class);
     private static final String CONFIG_FILE = "src" + File.separator + "main" + File.separator + "java" + File.separator + "com" + File.separator + "kosh" + File.separator + "config.properties";
-    public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/Default.aspx";
+    public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/visitor.aspx";
     public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
     private static String lastName;
     private static String firstName;
@@ -23,13 +23,9 @@ public class Configuration {
 
         // Проверяем, существует ли файл
         File file = new File(CONFIG_FILE);
-        if (file.exists()) {
-            logger.info("Файл уже существует");
-        } else {
+        if (!file.exists()) {
             try {
-                if (file.createNewFile()) {
-                    logger.info("Файл конфигурации успешно создан");
-                } else {
+                if (!file.createNewFile()) {
                     logger.info("Не удалось создать файл конфигурации");
                 }
             } catch (IOException e) {
