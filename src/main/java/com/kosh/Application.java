@@ -11,7 +11,7 @@ import java.io.File;
 
 public class Application {
     public static final Logger logger = LogManager.getLogger(Application.class);
-    private static String log4jConfigFile = "src" + File.separator + "main" + File.separator + "java" + File.separator + "resources" + File.separator + "log4j2.xml";
+    private static String log4jConfigFile = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "log4j2.xml";
 
     public static void main(String[] args) {
 
