@@ -1,6 +1,5 @@
 package com.kosh.Selenium;
 
-import com.kosh.Application;
 import com.kosh.Configuration.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
@@ -16,33 +15,41 @@ public class SeleniumAlgorithm {
 
     public SeleniumAlgorithm() {
 
+        try {
+
+            setup();
+
+            webDriver.get(Configuration.LOGIN_PAGE);
+
+            registrationPage.inputLastName(Configuration.getLastName());
+
+            registrationPage.inputFirstName(Configuration.getFirstName());
+
+            registrationPage.inputMiddleName(Configuration.getMiddleName());
+
+            registrationPage.inputPhone(Configuration.getPhone());
+
+            registrationPage.inputEmail(Configuration.getEmail());
+
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            closeWebDriver();
+        }
+
+    }
+
+
+    private static void setup() {
         webDriver = WebDriverManager.chromedriver().create();
-        webDriver.get(Configuration.LOGIN_PAGE);
-        registrationPage = new RegistrationPage(webDriver);
 
         webDriver.manage().window().maximize();    // Окно разворачивается на полный экран
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  // Задержка на выполнение
 
-        delay(500);
-        registrationPage.inputLastName(Configuration.getLastName());
-
-        delay(500);
-        registrationPage.inputFirstName(Configuration.getFirstName());
-
-        delay(500);
-        registrationPage.inputMiddleName(Configuration.getMiddleName());
-
-        delay(500);
-        registrationPage.inputPhone(Configuration.getPhone());
-
-        delay(500);
-        registrationPage.inputEmail(Configuration.getEmail());
-
-
-        closeWebDriver();
+        registrationPage = new RegistrationPage(webDriver);
 
     }
-
     private static void delay(int time) {
         try {
             Thread.sleep(time);

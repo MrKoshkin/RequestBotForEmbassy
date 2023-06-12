@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated structure and saveConfig method">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Added SeleniumAlgorithm class">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/log4j.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Application.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Application.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/SettingsWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/SettingsWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/log4j2.xml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,6 +61,7 @@
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\src\main\java\com\kosh" />
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\src\main\java\Archive" />
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\src\main\java" />
       <recent name="C:\Users\s.koshkin\IdeaProjects\RequestBotForEmbassy\logs" />
@@ -236,7 +237,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686290018533</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Added SeleniumAlgorithm class">
+      <created>1686312845471</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1686312845471</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -277,7 +285,8 @@
     <MESSAGE value="Updated ActionListener class for button" />
     <MESSAGE value="Updated Configuration class" />
     <MESSAGE value="Updated structure and saveConfig method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated structure and saveConfig method" />
+    <MESSAGE value="Added SeleniumAlgorithm class" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added SeleniumAlgorithm class" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -294,7 +303,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java</url>
-          <line>41</line>
+          <line>37</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
       </breakpoints>

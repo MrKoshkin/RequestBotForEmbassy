@@ -1,13 +1,14 @@
 package com.kosh.Configuration;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import com.kosh.Application;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.Properties;
 
 public class Configuration {
-    public static final Logger logger = LogManager.getLogger(Configuration.class);
+    public static final Logger logger = LoggerFactory.getLogger(Application.class);
     private static final String CONFIG_FILE = "src" + File.separator + "main" + File.separator + "java" + File.separator + "com" + File.separator + "kosh" + File.separator + "config.properties";
     public static final String LOGIN_PAGE = "https://alma-ata.kdmid.ru/queue/visitor.aspx";
     public static final String DOWNLOAD_CHROME_DRIVER_URL = "https://chromedriver.chromium.org/downloads";
@@ -45,7 +46,7 @@ public class Configuration {
 
         try (OutputStream outputStream = new FileOutputStream(CONFIG_FILE)) {
             properties.store(outputStream, "Configuration");
-            logger.info("Конфигурация успешно сохранена");
+//            logger.info("Конфигурация успешно сохранена");
         } catch (IOException e) {
             logger.info("Ошибка сохранения конфигурации: " + e.getMessage());
         }

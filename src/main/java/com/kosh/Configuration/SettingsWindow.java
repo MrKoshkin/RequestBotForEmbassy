@@ -1,11 +1,12 @@
 package com.kosh.Configuration;
 
+import com.kosh.Application;
 import com.kosh.Selenium.SeleniumAlgorithm;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
 import org.jdatepicker.impl.UtilDateModel;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +23,7 @@ import java.util.Properties;
 
 public class SettingsWindow extends JFrame {
 
-    public static final Logger logger = LogManager.getLogger(SettingsWindow.class);
+    public static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     private JTextField lastNameField;
     private JTextField firstNameField;
@@ -188,12 +189,12 @@ public class SettingsWindow extends JFrame {
             // Проверка правильности заполнения регистрационной формы
             Validator validator = new Validator();
             if (validator.lastNameValidator(lastNameField.getText())
-                && validator.firstNameValidator(firstNameField.getText())
-                && validator.middleNameValidator(middleNameField.getText())
-                && validator.phoneValidator(phoneField.getText())
-                && validator.emailValidator(emailField.getText())
-                && validator.birthDateValidator((Date) datePicker.getModel().getValue())
-                && validator.addressValidator((String) addressBox.getModel().getSelectedItem())
+                    && validator.firstNameValidator(firstNameField.getText())
+                    && validator.middleNameValidator(middleNameField.getText())
+                    && validator.phoneValidator(phoneField.getText())
+                    && validator.emailValidator(emailField.getText())
+                    && validator.birthDateValidator((Date) datePicker.getModel().getValue())
+                    && validator.addressValidator((String) addressBox.getModel().getSelectedItem())
             ) {
                 Configuration.setLastName(lastNameField.getText());
                 Configuration.setFirstName(firstNameField.getText());
