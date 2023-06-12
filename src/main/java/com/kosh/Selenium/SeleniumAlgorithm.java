@@ -49,6 +49,8 @@ public class SeleniumAlgorithm {
 
         registrationPage = new RegistrationPage(webDriver);
 
+        logger.info("Запуск вебдрайвера");
+
     }
     private static void delay(int time) {
         try {
