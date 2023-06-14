@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 
 import javax.imageio.ImageIO;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -50,11 +51,10 @@ public class SeleniumAlgorithm {
 
             // Решаем каптчу
             CaptchaManager captchaManager = new CaptchaManager(apiKey);
-            String base64Image = getCaptchaImage();
+            String base64Image = getCaptchaScreenshot();
             String captchaId = captchaManager.sendCaptcha(base64Image);
             String captchaResult = captchaManager.getCaptcha(captchaId);
 
-            System.out.println(captchaResult);
 
             registrationPage.inputCaptcha(captchaResult);
 
@@ -71,7 +71,50 @@ public class SeleniumAlgorithm {
 
     }
 
+    private static String getCaptchaScreenshot() {
+        // Найдите элемент, содержащий капчу
+        WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
+
+        // Получите скриншот всей страницы
+        File screenshotFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
+
+        String base64Image = null;
+
+        try {
+            // Загрузите скриншот в объект BufferedImage
+            BufferedImage fullScreenImage = ImageIO.read(screenshotFile);
+
+            // Получение координат и размеров элемента с капчей
+//            Point elementLocation = captchaElement.getLocation();     // Не правильно определяются координаты
+//            int elementWidth = captchaElement.getSize().getWidth();
+//            int elementHeight = captchaElement.getSize().getHeight();
+            Point elementLocation = new Point(780, 740);
+            int elementWidth = 160;
+            int elementHeight = 43;
+
+            // Обрезка изображения, чтобы получить только капчу
+            BufferedImage captchaImage = fullScreenImage.getSubimage(
+                    (int) elementLocation.getX(), (int) elementLocation.getY(), elementWidth, elementHeight);
+
+            // Сохраните изображение капчи в файл
+            File captchaFile = new File("src/main/java/com/kosh/captcha/captcha.png");
+            ImageIO.write(captchaImage, "png", captchaFile);
+
+            // Преобразование в base64
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(captchaImage, "png", baos);
+            byte[] imageBytes = baos.toByteArray();
+
+            base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return base64Image;
+    }
+
     // Получение картинки капчи
+    // (НЕ РАБОТАЕТ. Обновляется каптча при переходе по url картинки -_-)
     private static String getCaptchaImage() {
         WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
         String captchaImageUrl = captchaElement.getAttribute("src");
