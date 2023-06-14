@@ -113,7 +113,7 @@ public class CaptchaManager {
             try {
                 if (response.getStatusLine().getStatusCode() == HttpStatus.SC_OK) {
                     String result = EntityUtils.toString(response.getEntity());
-                    System.out.println(result);
+                    System.out.println("Captcha response: " + result);
                     return result.split("\\|")[1];
                 }
             } finally {

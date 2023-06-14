@@ -25,63 +25,77 @@ public class SeleniumAlgorithm {
 
     public SeleniumAlgorithm() {
 
-        try {
+        while (true) {
 
-            setup();
+            try {
 
-            webDriver.get(Configuration.LOGIN_PAGE);
+                setup();
 
-            registrationPage.inputLastName(Configuration.getLastName());
+                webDriver.get(Configuration.LOGIN_PAGE);
 
-            registrationPage.inputFirstName(Configuration.getFirstName());
+                registrationPage.inputLastName(Configuration.getLastName());
 
-            registrationPage.inputMiddleName(Configuration.getMiddleName());
+                registrationPage.inputFirstName(Configuration.getFirstName());
 
-            registrationPage.inputPhone(Configuration.getPhone());
+                registrationPage.inputMiddleName(Configuration.getMiddleName());
 
-            registrationPage.inputEmail(Configuration.getEmail());
+                registrationPage.inputPhone(Configuration.getPhone());
 
-            registrationPage.selectDayOfBirth(Configuration.getDayOfBirthday());
+                registrationPage.inputEmail(Configuration.getEmail());
 
-            registrationPage.selectMonthOfBirth(Configuration.getMonthOfBirthday());
+                registrationPage.selectDayOfBirth(Configuration.getDayOfBirthday());
 
-            registrationPage.inputYearOfBirth(Configuration.getYearOfBirthday());
+                registrationPage.selectMonthOfBirth(Configuration.getMonthOfBirthday());
 
-            registrationPage.selectAddress(Configuration.getAddress());
+                registrationPage.inputYearOfBirth(Configuration.getYearOfBirthday());
 
-            // Решаем каптчу
-            CaptchaManager captchaManager = new CaptchaManager(apiKey);
-            String base64Image = getCaptchaScreenshot();
-            String captchaId = captchaManager.sendCaptcha(base64Image);
-            String captchaResult = captchaManager.getCaptcha(captchaId);
+                registrationPage.selectAddress(Configuration.getAddress());
+
+                // Читаем капчу
+                String base64Image = getCaptchaScreenshot();
+                if (base64Image == null) {
+                    closeWebDriver();
+                    continue;
+                }
+
+                // Решаем капчу
+                CaptchaManager captchaManager = new CaptchaManager(apiKey);
+                String captchaId = captchaManager.sendCaptcha(base64Image);
+                if (captchaId == null) {
+                    closeWebDriver();
+                    continue;
+                }
+
+                String captchaResult = captchaManager.getCaptcha(captchaId);
 
 
-            registrationPage.inputCaptcha(captchaResult);
+                registrationPage.inputCaptcha(captchaResult);
 
-            registrationPage.nextPage();
+                registrationPage.nextPage();
 
-            delay(10000);
+                delay(10000);
 
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            closeWebDriver();
+            } catch (Exception e) {
+                logger.fatal("Ошибка работы алгоритма: "+ e.getMessage());
+            } finally {
+                closeWebDriver();
+            }
         }
 
     }
 
     private static String getCaptchaScreenshot() {
-        // Найдите элемент, содержащий капчу
+        // Получение элемента, содержащий капчу
         WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
 
-        // Получите скриншот всей страницы
+        // Получение скриншота всей страницы
         File screenshotFile = ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.FILE);
 
         String base64Image = null;
 
         try {
-            // Загрузите скриншот в объект BufferedImage
+            // Загрузка скриншота в объект BufferedImage
             BufferedImage fullScreenImage = ImageIO.read(screenshotFile);
 
             // Получение координат и размеров элемента с капчей
@@ -108,13 +122,12 @@ public class SeleniumAlgorithm {
             base64Image = Base64.getEncoder().encodeToString(imageBytes);
 
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка сохранения скриншота капчи " + e.getMessage());
         }
         return base64Image;
     }
 
-    // Получение картинки капчи
-    // (НЕ РАБОТАЕТ. Обновляется каптча при переходе по url картинки -_-)
+    // (НЕ РАБОТАЕТ. Капча обновление при переходе по url картинки -_-)
     private static String getCaptchaImage() {
         WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
         String captchaImageUrl = captchaElement.getAttribute("src");
@@ -156,6 +169,7 @@ public class SeleniumAlgorithm {
         logger.debug("Запуск вебдрайвера");
 
     }
+
     private static void delay(int time) {
         try {
             Thread.sleep(time);
