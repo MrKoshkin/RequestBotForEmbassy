@@ -115,6 +115,19 @@ public class Configuration {
         return birthday != null ? birthday : "";
     }
 
+    public static String getDayOfBirthday() {
+        String[] str = birthday.split("\\.");
+        return str[0];
+    }
+    public static String getMonthOfBirthday() {
+        String[] str = birthday.split("\\.");
+        return str[1];
+    }
+    public static String getYearOfBirthday() {
+        String[] str = birthday.split("\\.");
+        return str[2];
+    }
+
     public static void setBirthday(String birthday) {
         Configuration.birthday = birthday;
     }

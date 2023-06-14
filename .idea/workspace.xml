@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated logger">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/kosh/captcha/CaptchaManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -245,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686550101371</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Updated logger">
+      <created>1686550895087</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1686550895087</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -305,8 +317,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java</url>
-          <line>37</line>
-          <option name="timeStamp" value="30" />
+          <line>59</line>
+          <option name="timeStamp" value="35" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

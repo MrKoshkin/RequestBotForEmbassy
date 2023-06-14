@@ -4,8 +4,12 @@ import com.kosh.Configuration.Configuration;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumAlgorithm {
@@ -31,6 +35,30 @@ public class SeleniumAlgorithm {
 
             registrationPage.inputEmail(Configuration.getEmail());
 
+            registrationPage.selectDayOfBirth(Configuration.getDayOfBirthday());
+
+            registrationPage.selectMonthOfBirth(Configuration.getMonthOfBirthday());
+
+            registrationPage.selectYearOfBirth(Configuration.getYearOfBirthday());
+
+            registrationPage.selectAddress(Configuration.getAddress());
+
+            //
+
+
+
+
+//            List<WebElement> hCaptchaElements = webDriver.findElements(By.cssSelector(".h-captcha"));
+//
+//            for (WebElement e : hCaptchaElements) {
+//                System.out.println(e);
+//            }
+
+
+
+
+            delay(10000);
+
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -49,14 +77,14 @@ public class SeleniumAlgorithm {
 
         registrationPage = new RegistrationPage(webDriver);
 
-        logger.info("Запуск вебдрайвера");
+        logger.debug("Запуск вебдрайвера");
 
     }
     private static void delay(int time) {
         try {
             Thread.sleep(time);
         } catch (InterruptedException e) {
-//            logger.error(e.getMessage(), e);
+            logger.error("Ошибка при засыпании треда: " + e.getMessage());
         }
     }
 
@@ -67,7 +95,9 @@ public class SeleniumAlgorithm {
                 webDriver.quit();
                 webDriver = null;
             }
+            logger.debug("Вебдрайвер успешно закрыт");
         } catch (Exception e) {
+            logger.error("Ошибка при закрытии вебдрайвера: " + e.getMessage());
         }
     }
 }

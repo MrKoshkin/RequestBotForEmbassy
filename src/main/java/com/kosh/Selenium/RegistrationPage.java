@@ -48,9 +48,22 @@ public class RegistrationPage {
         dayOfBirthField.sendKeys(dayOfBirth);
     }
 
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_DDL_Month\"]")
+    private WebElement monthOfBirthField;
+    public void selectMonthOfBirth(String monthOfBirth) {
+        monthOfBirthField.sendKeys(monthOfBirth);
+    }
 
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_TextBox_Year\"]")
+    private WebElement yearOfBirthField;
+    public void selectYearOfBirth(String yearOfBirth) {
+        yearOfBirthField.sendKeys(yearOfBirth);
+    }
 
-    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_txtFam\"]")
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_DDL_Mr\"]")
     private WebElement addressField;
+    public void selectAddress(String address) {
+        addressField.sendKeys(address);
+    }
 
 }
