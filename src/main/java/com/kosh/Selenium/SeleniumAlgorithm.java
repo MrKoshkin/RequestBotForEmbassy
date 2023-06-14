@@ -1,21 +1,26 @@
 package com.kosh.Selenium;
 
 import com.kosh.Configuration.Configuration;
+import com.kosh.captcha.CaptchaManager;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 
-import java.util.Arrays;
-import java.util.List;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.net.URL;
+import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
 public class SeleniumAlgorithm {
     public static final Logger logger = LogManager.getLogger(SeleniumAlgorithm.class);
     protected static WebDriver webDriver;
     public static RegistrationPage registrationPage;
+    private final String apiKey = "c8357131c9dee0802124c380f205d263";
 
     public SeleniumAlgorithm() {
 
@@ -39,23 +44,21 @@ public class SeleniumAlgorithm {
 
             registrationPage.selectMonthOfBirth(Configuration.getMonthOfBirthday());
 
-            registrationPage.selectYearOfBirth(Configuration.getYearOfBirthday());
+            registrationPage.inputYearOfBirth(Configuration.getYearOfBirthday());
 
             registrationPage.selectAddress(Configuration.getAddress());
 
-            //
+            // Решаем каптчу
+            CaptchaManager captchaManager = new CaptchaManager(apiKey);
+            String base64Image = getCaptchaImage();
+            String captchaId = captchaManager.sendCaptcha(base64Image);
+            String captchaResult = captchaManager.getCaptcha(captchaId);
 
+            System.out.println(captchaResult);
 
+            registrationPage.inputCaptcha(captchaResult);
 
-
-//            List<WebElement> hCaptchaElements = webDriver.findElements(By.cssSelector(".h-captcha"));
-//
-//            for (WebElement e : hCaptchaElements) {
-//                System.out.println(e);
-//            }
-
-
-
+            registrationPage.nextPage();
 
             delay(10000);
 
@@ -66,6 +69,36 @@ public class SeleniumAlgorithm {
             closeWebDriver();
         }
 
+    }
+
+    // Получение картинки капчи
+    private static String getCaptchaImage() {
+        WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
+        String captchaImageUrl = captchaElement.getAttribute("src");
+
+        String base64Image = null;
+
+        try {
+            // Загрузка изображения в объект BufferedImage
+            URL url = new URL(captchaImageUrl);
+            BufferedImage captchaImage = ImageIO.read(url);
+
+            // Сохраните изображение капчи в файл
+            File captchaFile = new File("captcha.png");
+            ImageIO.write(captchaImage, "png", captchaFile);
+
+            // Преобразование в base64
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(captchaImage, "png", baos);
+            byte[] imageBytes = baos.toByteArray();
+
+            base64Image = Base64.getEncoder().encodeToString(imageBytes);
+
+        } catch (IOException e) {
+            logger.error("Ошибка сохранения капчи" + e.getMessage());
+        }
+
+        return base64Image;
     }
 
 

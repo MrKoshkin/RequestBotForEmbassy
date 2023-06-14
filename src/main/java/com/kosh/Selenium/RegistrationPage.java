@@ -56,7 +56,7 @@ public class RegistrationPage {
 
     @FindBy(xpath = "//*[@id=\"ctl00_MainContent_TextBox_Year\"]")
     private WebElement yearOfBirthField;
-    public void selectYearOfBirth(String yearOfBirth) {
+    public void inputYearOfBirth(String yearOfBirth) {
         yearOfBirthField.sendKeys(yearOfBirth);
     }
 
@@ -66,4 +66,15 @@ public class RegistrationPage {
         addressField.sendKeys(address);
     }
 
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_txtCode\"]")
+    private WebElement captchaField;
+    public void inputCaptcha(String captchaResult) {
+        captchaField.sendKeys(captchaResult);
+    }
+
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_ButtonA\"]")
+    private WebElement nextPageBtn;
+    public void nextPage() {
+        nextPageBtn.click();
+    }
 }

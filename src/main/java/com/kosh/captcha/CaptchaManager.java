@@ -26,7 +26,11 @@ public class CaptchaManager {
 
     public static final Logger logger = LoggerFactory.getLogger(Application.class);
 
-    private final String apiKey = "c8357131c9dee0802124c380f205d263";
+    private final String apiKey;
+
+    public CaptchaManager(String apiKey) {
+        this.apiKey = apiKey;
+    }
 
     public String getCaptcha(String captchaId) {
         for (int i = 0; i < 10; i++) {
