@@ -20,7 +20,7 @@ import java.util.concurrent.TimeUnit;
 public class SeleniumAlgorithm {
     public static final Logger logger = LogManager.getLogger(SeleniumAlgorithm.class);
     protected static WebDriver webDriver;
-    public static RegistrationPage registrationPage;
+    public static WebElements webElements;
     private final String apiKey = "c8357131c9dee0802124c380f205d263";
 
     public SeleniumAlgorithm() {
@@ -33,23 +33,16 @@ public class SeleniumAlgorithm {
 
                 webDriver.get(Configuration.LOGIN_PAGE);
 
-                registrationPage.inputLastName(Configuration.getLastName());
-
-                registrationPage.inputFirstName(Configuration.getFirstName());
-
-                registrationPage.inputMiddleName(Configuration.getMiddleName());
-
-                registrationPage.inputPhone(Configuration.getPhone());
-
-                registrationPage.inputEmail(Configuration.getEmail());
-
-                registrationPage.selectDayOfBirth(Configuration.getDayOfBirthday());
-
-                registrationPage.selectMonthOfBirth(Configuration.getMonthOfBirthday());
-
-                registrationPage.inputYearOfBirth(Configuration.getYearOfBirthday());
-
-                registrationPage.selectAddress(Configuration.getAddress());
+                // Заполнение регистрационной формы
+                webElements.inputLastName(Configuration.getLastName());
+                webElements.inputFirstName(Configuration.getFirstName());
+                webElements.inputMiddleName(Configuration.getMiddleName());
+                webElements.inputPhone(Configuration.getPhone());
+                webElements.inputEmail(Configuration.getEmail());
+                webElements.selectDayOfBirth(Configuration.getDayOfBirthday());
+                webElements.selectMonthOfBirth(Configuration.getMonthOfBirthday());
+                webElements.inputYearOfBirth(Configuration.getYearOfBirthday());
+                webElements.selectAddress(Configuration.getAddress());
 
                 // Читаем капчу
                 String base64Image = getCaptchaScreenshot();
@@ -65,16 +58,32 @@ public class SeleniumAlgorithm {
                     closeWebDriver();
                     continue;
                 }
-
                 String captchaResult = captchaManager.getCaptcha(captchaId);
+                if (captchaResult == null) {
+                    closeWebDriver();
+                    continue;
+                }
+                webElements.inputCaptcha(captchaResult);
 
+                // Переходим на следующую страницу
+                webElements.nextPage();
+                delay(1000);
 
-                registrationPage.inputCaptcha(captchaResult);
+                // Выбираем тип паспорта
+                webElements.selectApplicationCategory();
+                delay(1000);
 
-                registrationPage.nextPage();
+                // Выбирает категорию и переходим на следующую страницу
+                webElements.selectAdultPassport();
+                webElements.nextPage2();
+                delay(1000);
 
+                // Выбираем запись на прием
+                webElements.selectBiometricPassport();
+                webElements.makeAppointment();
                 delay(10000);
 
+                closeWebDriver();
 
             } catch (Exception e) {
                 logger.fatal("Ошибка работы алгоритма: "+ e.getMessage());
@@ -82,7 +91,6 @@ public class SeleniumAlgorithm {
                 closeWebDriver();
             }
         }
-
     }
 
     private static String getCaptchaScreenshot() {
@@ -164,7 +172,7 @@ public class SeleniumAlgorithm {
         webDriver.manage().window().maximize();    // Окно разворачивается на полный экран
         webDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);  // Задержка на выполнение
 
-        registrationPage = new RegistrationPage(webDriver);
+        webElements = new WebElements(webDriver);
 
         logger.debug("Запуск вебдрайвера");
 

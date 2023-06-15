@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Added captcha solving algorithm">
+    <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated captcha solving algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/WebElements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -267,7 +268,14 @@
       <option name="project" value="LOCAL" />
       <updated>1686725947361</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Updated captcha solving algorithm">
+      <created>1686740242193</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1686740242193</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -312,7 +320,8 @@
     <MESSAGE value="Updated logger" />
     <MESSAGE value="Added actions on registration page with Selenium" />
     <MESSAGE value="Added captcha solving algorithm" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added captcha solving algorithm" />
+    <MESSAGE value="Updated captcha solving algorithm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated captcha solving algorithm" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -329,8 +338,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java</url>
-          <line>51</line>
-          <option name="timeStamp" value="40" />
+          <line>85</line>
+          <option name="timeStamp" value="21" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

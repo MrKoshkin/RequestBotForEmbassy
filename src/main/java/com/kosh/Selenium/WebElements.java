@@ -5,10 +5,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegistrationPage {
+public class WebElements {
     public WebDriver driver;
 
-    public RegistrationPage(WebDriver driver) {
+    public WebElements(WebDriver driver) {
         PageFactory.initElements(driver, this);
         this.driver = driver;
     }
@@ -77,4 +77,35 @@ public class RegistrationPage {
     public void nextPage() {
         nextPageBtn.click();
     }
+
+    @FindBy(xpath = "//*[@id=\"reasons\"]/dd[4]/a")
+    private WebElement tenYearPassportBtn;
+    public void selectApplicationCategory() {
+        tenYearPassportBtn.click();
+    }
+
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_RList_0\"]")
+    private WebElement adultPassportBtn;
+    public void selectAdultPassport() {
+        adultPassportBtn.click();
+    }
+
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_ButtonA\"]")
+    private WebElement nextPageBtn2;
+    public void nextPage2() {
+        nextPageBtn2.click();
+    }
+
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_CheckBoxList1_0\"]")
+    private WebElement biometricPassport;
+    public void selectBiometricPassport () {
+        biometricPassport.click();
+    }
+
+    @FindBy(xpath = "//*[@id=\"ctl00_MainContent_ButtonQueue\"]")
+    private WebElement appointmentBtn;
+    public void makeAppointment() {
+        appointmentBtn.click();
+    }
+
 }
