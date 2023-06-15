@@ -114,7 +114,6 @@ public class Configuration {
     public static String getBirthday() {
         return birthday != null ? birthday : "";
     }
-
     public static String getDayOfBirthday() {
         String[] str = birthday.split("\\.");
         return str[0];

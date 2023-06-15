@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="844189db-57f3-4cb9-8304-3d8d4e497f25" name="Changes" comment="Updated captcha solving algorithm">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/RegistrationPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/WebElements.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Configuration/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -24,6 +24,9 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="jar://$USER_HOME$/Library/Java/JavaVirtualMachines/openjdk-20.0.1/Contents/Home/lib/src.zip!/java.desktop/javax/swing/SwingUtilities.java" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -338,8 +341,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/kosh/Selenium/SeleniumAlgorithm.java</url>
-          <line>85</line>
-          <option name="timeStamp" value="21" />
+          <line>143</line>
+          <option name="timeStamp" value="33" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -8,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.*;
 
 import javax.imageio.ImageIO;
-import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -110,13 +109,22 @@ public class SeleniumAlgorithm {
 //            Point elementLocation = captchaElement.getLocation();     // Не правильно определяются координаты
 //            int elementWidth = captchaElement.getSize().getWidth();
 //            int elementHeight = captchaElement.getSize().getHeight();
-            Point elementLocation = new Point(780, 740);
-            int elementWidth = 160;
-            int elementHeight = 43;
+//            Point elementLocation = new Point(375, 630);    // 780, 740
+//            int elementWidth = 160;
+//            int elementHeight = 43;
+
+            // Получение координат и размеров элемента с капчей
+            Point elementLocation = captchaElement.getLocation();
+            int elementX = elementLocation.getX();
+            int elementY = elementLocation.getY();
+            int elementWidth = captchaElement.getSize().getWidth();
+            int elementHeight = captchaElement.getSize().getHeight();
+
+
 
             // Обрезка изображения, чтобы получить только капчу
             BufferedImage captchaImage = fullScreenImage.getSubimage(
-                    (int) elementLocation.getX(), (int) elementLocation.getY(), elementWidth, elementHeight);
+                    elementLocation.getX(), elementLocation.getY(), elementWidth, elementHeight);
 
             // Сохраните изображение капчи в файл
             File captchaFile = new File("src/main/java/com/kosh/captcha/captcha.png");
@@ -132,38 +140,39 @@ public class SeleniumAlgorithm {
         } catch (IOException e) {
             logger.error("Ошибка сохранения скриншота капчи " + e.getMessage());
         }
+        closeWebDriver();
         return base64Image;
     }
 
-    // (НЕ РАБОТАЕТ. Капча обновление при переходе по url картинки -_-)
-    private static String getCaptchaImage() {
-        WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
-        String captchaImageUrl = captchaElement.getAttribute("src");
-
-        String base64Image = null;
-
-        try {
-            // Загрузка изображения в объект BufferedImage
-            URL url = new URL(captchaImageUrl);
-            BufferedImage captchaImage = ImageIO.read(url);
-
-            // Сохраните изображение капчи в файл
-            File captchaFile = new File("captcha.png");
-            ImageIO.write(captchaImage, "png", captchaFile);
-
-            // Преобразование в base64
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(captchaImage, "png", baos);
-            byte[] imageBytes = baos.toByteArray();
-
-            base64Image = Base64.getEncoder().encodeToString(imageBytes);
-
-        } catch (IOException e) {
-            logger.error("Ошибка сохранения капчи" + e.getMessage());
-        }
-
-        return base64Image;
-    }
+      // (НЕ РАБОТАЕТ. Капча обновляется при переходе по url картинки -_-)
+//    private static String getCaptchaImage() {
+//        WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
+//        String captchaImageUrl = captchaElement.getAttribute("src");
+//
+//        String base64Image = null;
+//
+//        try {
+//            // Загрузка изображения в объект BufferedImage
+//            URL url = new URL(captchaImageUrl);
+//            BufferedImage captchaImage = ImageIO.read(url);
+//
+//            // Сохраните изображение капчи в файл
+//            File captchaFile = new File("captcha.png");
+//            ImageIO.write(captchaImage, "png", captchaFile);
+//
+//            // Преобразование в base64
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            ImageIO.write(captchaImage, "png", baos);
+//            byte[] imageBytes = baos.toByteArray();
+//
+//            base64Image = Base64.getEncoder().encodeToString(imageBytes);
+//
+//        } catch (IOException e) {
+//            logger.error("Ошибка сохранения капчи" + e.getMessage());
+//        }
+//
+//        return base64Image;
+//    }
 
 
     private static void setup() {
