@@ -33,8 +33,10 @@ public class SettingsWindow extends JFrame {
     private JDatePickerImpl datePicker;
     private JDatePanelImpl datePickerPanel;
     private JButton startButton;
+    private JButton finishButton;
     private JComboBox<String> addressBox;
     private final SimpleDateFormat dateFormatter = new SimpleDateFormat("dd.MM.yyyy");
+    private Thread seleniumThread;
 
     public SettingsWindow() {
         setTitle("Запись в посольство");
@@ -102,6 +104,12 @@ public class SettingsWindow extends JFrame {
         startButton.addActionListener(new StartButtonListener());
         startButton.setHorizontalAlignment(SwingConstants.CENTER);
 
+        finishButton = new JButton("Завершить");
+        finishButton.addActionListener(e -> {
+            seleniumThread.interrupt();
+            dispose();
+            System.exit(0); // Завершение программы
+        });
 
         // Установка менеджера компоновки GridBagLayout
         setLayout(new GridBagLayout());
@@ -127,6 +135,8 @@ public class SettingsWindow extends JFrame {
         add(birthDateLabel, constraints);
         constraints.gridy = 6;
         add(addressLabel, constraints);
+        constraints.gridy = 7;
+        add(startButton, constraints);
 
         // Добавление компонентов в столбец 2
         constraints.gridx = 1;
@@ -145,7 +155,7 @@ public class SettingsWindow extends JFrame {
         constraints.gridy = 6;
         add(addressBox, constraints);
         constraints.gridy = 7;
-        add(startButton, constraints);
+        add(finishButton, constraints);
 
         pack(); // Подгон размера окна под размещенные элементы
         setLocationRelativeTo(null);
@@ -206,8 +216,10 @@ public class SettingsWindow extends JFrame {
 
                 Configuration.saveConfig();
 
-                dispose();
-                new SeleniumAlgorithm();
+//                dispose();
+                seleniumThread = new Thread(new SeleniumAlgorithm());
+                seleniumThread.start();
+//                seleniumAlgorithm = new SeleniumAlgorithm();
             }
 
         }

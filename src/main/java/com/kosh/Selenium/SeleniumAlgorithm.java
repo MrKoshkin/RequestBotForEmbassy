@@ -12,19 +12,20 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Base64;
 import java.util.concurrent.TimeUnit;
 
-public class SeleniumAlgorithm {
+public class SeleniumAlgorithm extends Thread {
     public static final Logger logger = LogManager.getLogger(SeleniumAlgorithm.class);
     protected static WebDriver webDriver;
     public static WebElements webElements;
     private final String apiKey = "c8357131c9dee0802124c380f205d263";
 
-    public SeleniumAlgorithm() {
+    @Override
+    public void run() {
+        Thread current = Thread.currentThread();
 
-        while (true) {
+        while (!current.isInterrupted()) {
 
             try {
 
@@ -82,10 +83,9 @@ public class SeleniumAlgorithm {
                 webElements.makeAppointment();
                 delay(10000);
 
-                closeWebDriver();
-
             } catch (Exception e) {
-                logger.fatal("Ошибка работы алгоритма: "+ e.getMessage());
+                logger.fatal("Ошибка работы алгоритма: " + e.getMessage());
+                current.interrupt();
             } finally {
                 closeWebDriver();
             }
@@ -105,26 +105,48 @@ public class SeleniumAlgorithm {
             // Загрузка скриншота в объект BufferedImage
             BufferedImage fullScreenImage = ImageIO.read(screenshotFile);
 
+            // Скрин полный
+            File fullCaptchaFile = new File("src/main/java/com/kosh/captcha/captchaFULL.png");
+            ImageIO.write(fullScreenImage, "png", fullCaptchaFile);
+
             // Получение координат и размеров элемента с капчей
-//            Point elementLocation = captchaElement.getLocation();     // Не правильно определяются координаты
+//            Point elementLocation = captchaElement.getLocation();     // Неправильно определяются координаты
 //            int elementWidth = captchaElement.getSize().getWidth();
 //            int elementHeight = captchaElement.getSize().getHeight();
-//            Point elementLocation = new Point(375, 630);    // 780, 740
-//            int elementWidth = 160;
-//            int elementHeight = 43;
-
-            // Получение координат и размеров элемента с капчей
-            Point elementLocation = captchaElement.getLocation();
-            int elementX = elementLocation.getX();
-            int elementY = elementLocation.getY();
-            int elementWidth = captchaElement.getSize().getWidth();
-            int elementHeight = captchaElement.getSize().getHeight();
+            Point elementLocation = new Point(780, 740);    // 780, 740
+            int elementWidth = 160;     // 160
+            int elementHeight = 43;     // 43
 
 
-
-            // Обрезка изображения, чтобы получить только капчу
+//             Обрезка изображения, чтобы получить только капчу
             BufferedImage captchaImage = fullScreenImage.getSubimage(
                     elementLocation.getX(), elementLocation.getY(), elementWidth, elementHeight);
+
+
+//            // Получение размеров экрана
+//            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+//            int screenWidth = screenSize.width;
+//            int screenHeight = screenSize.height;
+//
+//            // Получение размеров элемента с капчей
+//            int elementWidth = captchaElement.getSize().getWidth();
+//            int elementHeight = captchaElement.getSize().getHeight();
+//
+//            // Вычисление процентного положения капчи относительно максимальной ширины и высоты экрана
+//            double elementXPercentage = (double) captchaElement.getLocation().getX() / screenWidth * 100;
+//            double elementYPercentage = (double) captchaElement.getLocation().getY() / screenHeight * 100;
+//            double elementWidthPercentage = (double) elementWidth / screenWidth * 100;
+//            double elementHeightPercentage = (double) elementHeight / screenHeight * 100;
+//
+//            // Вычисление координат для обрезки скриншота на основе процентного положения капчи
+//            int captchaX = (int) (fullScreenImage.getWidth() * elementXPercentage / 100);
+//            int captchaY = (int) (fullScreenImage.getHeight() * elementYPercentage / 100);
+//            int captchaWidth = (int) (fullScreenImage.getWidth() * elementWidthPercentage / 100);
+//            int captchaHeight = (int) (fullScreenImage.getHeight() * elementHeightPercentage / 100);
+//
+//            // Обрезка изображения, чтобы получить только капчу
+//            BufferedImage captchaImage = fullScreenImage.getSubimage(captchaX, captchaY, captchaWidth, captchaHeight);
+
 
             // Сохраните изображение капчи в файл
             File captchaFile = new File("src/main/java/com/kosh/captcha/captcha.png");
@@ -140,11 +162,11 @@ public class SeleniumAlgorithm {
         } catch (IOException e) {
             logger.error("Ошибка сохранения скриншота капчи " + e.getMessage());
         }
-        closeWebDriver();
+//        closeWebDriver();
         return base64Image;
     }
 
-      // (НЕ РАБОТАЕТ. Капча обновляется при переходе по url картинки -_-)
+    // (НЕ РАБОТАЕТ. Капча обновляется при переходе по url картинки -_-)
 //    private static String getCaptchaImage() {
 //        WebElement captchaElement = webDriver.findElement(By.id("ctl00_MainContent_imgSecNum"));
 //        String captchaImageUrl = captchaElement.getAttribute("src");
@@ -195,7 +217,7 @@ public class SeleniumAlgorithm {
         }
     }
 
-    private static void closeWebDriver() {
+    public static void closeWebDriver() {
         try {
             if (webDriver != null) {
                 webDriver.close();
